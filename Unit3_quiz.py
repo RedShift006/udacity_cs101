@@ -59,4 +59,49 @@ print greatest([4,23,1])
 print greatest([])
 #>>> 0
 
+
+# Quiz8
+
+def check_sudoku(list):
+    list_len = len(list)
+    all_list = []
+    i = 1
     
+    sum_all_list_index = list_len*(list_len+1)/2 - list_len
+    while list_len > 0:
+        all_list.append(i)
+        list_len = list_len -1
+        i = i + 1
+    print all_list
+    
+    is_sudokou = False
+    
+    print sum_all_list_index
+    
+    while not is_sudokou:
+        is_sudokou = do_test_in_per_row(list, all_list, sum_all_list_index)
+            
+    print is_sudokou
+    
+    
+def do_test_in_per_row(list, all_list, sum_all_list_index):
+    list_len = len(list)
+    e_len = 0
+    for e in list:
+        e_len = len(e)
+        i = 0
+        sum_e_index = 0
+        while i < e_len:
+            if all_list.index(e[i]) != -1:
+                sum_e_index += all_list.index(e[i])
+                i = i + 1
+            else:
+                return False
+        if sum_e_index != sum_all_list_index:
+            return False
+    return True
+            
+        
+
+    
+print check_sudoku(incorrect)
